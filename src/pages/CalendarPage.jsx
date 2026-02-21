@@ -24,17 +24,17 @@ const CalendarPage = () => {
         return (
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-100">Schedule</h1>
-                    <p className="text-slate-400 mt-1">Manage your classes and events</p>
+                    <h1 className="text-3xl font-bold text-slate-900">Schedule</h1>
+                    <p className="text-slate-500 mt-1">Manage your classes and events</p>
                 </div>
-                <div className="flex items-center gap-3 bg-slate-800/50 p-1 rounded-xl border border-slate-700/50">
-                    <button onClick={prevMonth} className="p-2 hover:bg-slate-700/50 rounded-lg text-slate-400 hover:text-white transition-colors">
+                <div className="flex items-center gap-3 bg-slate-800/50 p-1 rounded-xl border border-slate-200">
+                    <button onClick={prevMonth} className="p-2 hover:bg-slate-700/50 rounded-lg text-slate-500 hover:text-slate-900 transition-colors">
                         <ChevronLeft className="w-5 h-5" />
                     </button>
-                    <div className="px-4 font-semibold text-slate-200 min-w-[140px] text-center">
+                    <div className="px-4 font-semibold text-slate-900 min-w-[140px] text-center">
                         {format(currentDate, 'MMMM yyyy')}
                     </div>
-                    <button onClick={nextMonth} className="p-2 hover:bg-slate-700/50 rounded-lg text-slate-400 hover:text-white transition-colors">
+                    <button onClick={nextMonth} className="p-2 hover:bg-slate-700/50 rounded-lg text-slate-500 hover:text-slate-900 transition-colors">
                         <ChevronRight className="w-5 h-5" />
                     </button>
                     <div className="w-[1px] h-6 bg-slate-700 mx-1"></div>
@@ -49,7 +49,7 @@ const CalendarPage = () => {
     const renderDays = () => {
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         return (
-            <div className="grid grid-cols-7 mb-2 border-b border-slate-700/30 pb-2">
+            <div className="grid grid-cols-7 mb-2 border-b border-slate-200/50 pb-2">
                 {days.map(day => (
                     <div key={day} className="text-center text-slate-500 text-sm font-medium uppercase tracking-wider">
                         {day}
@@ -74,7 +74,7 @@ const CalendarPage = () => {
         const dateRange = eachDayOfInterval({ start: startDate, end: endDate });
 
         return (
-            <div className="grid grid-cols-7 gap-px bg-slate-700/30 rounded-2xl overflow-hidden border border-slate-700/30">
+            <div className="grid grid-cols-7 gap-px bg-slate-700/30 rounded-2xl overflow-hidden border border-slate-200/50">
                 {dateRange.map((dt, i) => {
                     const isCurrentMonth = isSameMonth(dt, monthStart);
                     const isSelected = isSameDay(dt, new Date()); // Just using 'today' as 'selected' for now
@@ -85,18 +85,18 @@ const CalendarPage = () => {
                     return (
                         <div
                             key={dt.toString()}
-                            className={`min-h-[120px] p-2 bg-slate-900/40 relative group transition-colors hover:bg-slate-800/40 ${!isCurrentMonth ? 'bg-slate-900/80 text-slate-600' : 'text-slate-300'
+                            className={`min-h-[120px] p-2 bg-slate-50/40 relative group transition-colors hover:bg-white/40 ${!isCurrentMonth ? 'bg-slate-50/80 text-slate-600' : 'text-slate-600'
                                 }`}
                         >
                             <div className={`flex justify-between items-start mb-2`}>
                                 <span className={`w-7 h-7 flex items-center justify-center rounded-full text-sm font-medium ${isToday(dt)
-                                        ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/25'
-                                        : 'text-slate-400'
+                                        ? 'bg-indigo-500 text-slate-900 shadow-lg shadow-indigo-500/25'
+                                        : 'text-slate-500'
                                     }`}>
                                     {format(dt, dateFormat)}
                                 </span>
                                 <button className="opacity-0 group-hover:opacity-100 p-1 hover:bg-slate-700 rounded transition-opacity">
-                                    <Plus className="w-3 h-3 text-slate-400" />
+                                    <Plus className="w-3 h-3 text-slate-500" />
                                 </button>
                             </div>
 
@@ -104,7 +104,7 @@ const CalendarPage = () => {
                                 {dayEvents.map((ev, idx) => (
                                     <div key={idx} className={`text-xs p-1.5 rounded border border-transparent truncate cursor-pointer hover:scale-[1.02] transition-transform ${ev.type === 'class' ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/20' :
                                             ev.type === 'meeting' ? 'bg-purple-500/20 text-purple-300 border-purple-500/20' :
-                                                'bg-slate-700/50 text-slate-400'
+                                                'bg-slate-700/50 text-slate-500'
                                         }`}>
                                         {ev.time} - {ev.title}
                                     </div>

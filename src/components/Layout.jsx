@@ -1,13 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 
 const Layout = () => {
     return (
-        <div className="min-h-screen pl-64 transition-all duration-300">
-            <Sidebar />
-            <main className="min-h-screen w-full relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+        <div className="min-h-screen transition-all duration-300 flex flex-col relative">
+            <div className="fixed inset-0 bg-white/70 backdrop-blur-[2px] pointer-events-none" />
+            <Navbar />
+            <main className="flex-1 w-full relative z-10">
                 <Outlet />
             </main>
         </div>
